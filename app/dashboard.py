@@ -12,7 +12,7 @@ st.set_page_config(page_title="Yolcu360 Dashboard", page_icon="🚗", layout="wi
 st.title(" :bar_chart: Yolcu360 Dashboard")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
-with open("garenta_sube.json", "r") as f:
+with open("app/garenta_sube.json", "r") as f:
     loc_dict = json.load(f)
 
 
