@@ -42,8 +42,8 @@ class WSCaller:
 
         re = requests.post(self.url, data=json.dumps(data), headers=headers)
         json_data = re.json()
-        if not os.path.exists(loc_name):
-            os.makedirs(loc_name)
+        if not os.path.exists("app/"+loc_name):
+            os.makedirs("app/"+loc_name)
         with open(f"app/{loc_name}/yolcu360_{interval}.json", "w") as f:
             json.dump(json_data, f, indent=4)
     
