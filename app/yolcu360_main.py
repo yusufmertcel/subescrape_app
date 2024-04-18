@@ -18,7 +18,7 @@ class Main:
         self.start_date = datetime.datetime.now() + datetime.timedelta(days=self.day)
 
 
-        with open("garenta_sube.json", "r") as f:
+        with open("app/garenta_sube.json", "r") as f:
             self.loc_dict = json.load(f)
 
        
@@ -40,7 +40,7 @@ class Main:
         for gun in self.gunler:
             print(f"{loc_name}/yolcu360_{gun[1]}.json")
             if os.path.exists(f"{loc_name}/yolcu360_{gun[1]}.json"):
-                with open(f"{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
+                with open(f"app/{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
                     json_data = json.load(f)
                     try:
                         last_updated = json_data["results"][0]["searchRequest"]["checkInDateTime"].split(".")[0]

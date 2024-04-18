@@ -44,12 +44,12 @@ class WSCaller:
         json_data = re.json()
         if not os.path.exists(loc_name):
             os.makedirs(loc_name)
-        with open(f"{loc_name}/yolcu360_{interval}.json", "w") as f:
+        with open(f"app/{loc_name}/yolcu360_{interval}.json", "w") as f:
             json.dump(json_data, f, indent=4)
     
     def sippCodes(self, loc_name):
         for gun in self.gunler:
-            with open(f"{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
+            with open(f"app/{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
                 json_data = json.load(f)
             results = json_data["results"] if json_data["results"] is not None else []
             for idx, car in enumerate(results): 
@@ -60,7 +60,7 @@ class WSCaller:
                 if f"{brand_id}+{model_id}" not in self.brand_model_TO_sippcode.keys() and "sippCode" in car_detail.keys():
                     self.brand_model_TO_sippcode[f"{brand_id}+{model_id}"] = car_detail["sippCode"]
             
-        with open(f"{loc_name}/SippCode.json", "w") as f:
+        with open(f"app/{loc_name}/SippCode.json", "w") as f:
             json_data = json.dump(self.brand_model_TO_sippcode, f, indent=4)
         return self.brand_model_TO_sippcode
 

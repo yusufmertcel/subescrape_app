@@ -22,7 +22,7 @@ class DataExtract:
     def convert_excel(self, sippcodes_dict, loc_name):
         dfs = [None, None, None]
         for idx, gun in enumerate(self.gunler):
-            with open(f"{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
+            with open(f"app/{loc_name}/yolcu360_{gun[1]}.json", "r") as f:
                 json_data = json.load(f)
             try:
                 count = json_data["count"]

@@ -19,6 +19,6 @@ for sube in result:
     loc_dict[loc_name] = loc
     #print(links[1]["href"].split("/")[1])
 
-with open("garenta_sube.json", "w") as f:
+with open("app/garenta_sube.json", "w") as f:
     json.dump(loc_dict, f, indent=4)
 
