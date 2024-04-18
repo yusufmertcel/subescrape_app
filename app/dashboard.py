@@ -35,7 +35,7 @@ if fl is not None:
     else:
         df_thirty = pd.read_excel(fl, sheet_name=0)
 else:
-    files = os.listdir(".")
+    files = os.listdir("./app")
     file = [idx for idx in files if idx.lower().endswith(".xlsx")][0]
     print(file)
     try:
