@@ -39,13 +39,13 @@ else:
     file = [idx for idx in files if idx.lower().endswith(".xlsx")][0]
     print(file)
     try:
-        df_one = pd.read_excel(file, sheet_name="1 Gunluk")
-        df_seven = pd.read_excel(file, sheet_name="7 Gunluk")
-        df_thirty = pd.read_excel(file, sheet_name="30 Gunluk")
+        df_one = pd.read_excel("app/"+file, sheet_name="1 Gunluk")
+        df_seven = pd.read_excel("app/"+file, sheet_name="7 Gunluk")
+        df_thirty = pd.read_excel("app/"+file, sheet_name="30 Gunluk")
     except ValueError:
-        df_one = pd.read_excel(file, sheet_name=0)
-        df_seven = pd.read_excel(file, sheet_name=1)
-        df_thirty = pd.read_excel(file, sheet_name=2)
+        df_one = pd.read_excel("app/"+file, sheet_name=0)
+        df_seven = pd.read_excel("app/"+file, sheet_name=1)
+        df_thirty = pd.read_excel("app/"+file, sheet_name=2)
 
 #Sidebar
 def click_button(lvhour, lvday, lvloc_name, lvfname):
