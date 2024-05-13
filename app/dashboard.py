@@ -5,6 +5,7 @@ import os
 import warnings
 import json
 from yolcu360_main import Main
+import datetime
 warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Yolcu360 Dashboard", page_icon="🚗", layout="wide")
@@ -83,8 +84,12 @@ df_filtered = df[(df["price_amount"] >= price1) & (df["price_amount"] <= price2)
 
 
 
-hour = st.sidebar.number_input('Kaç saat sonrasindan baslamak istiyorsunuz? En az 2 saat sonrasını seçmelisiniz.', step=1, min_value=2, max_value=24)
-day = st.sidebar.number_input('Kaç gün sonrasından baslamak istiyorsunuz? Aynı gün için 0 yazmalısınız.', step=1, min_value=0, max_value=30)
+#hour = st.sidebar.number_input('Kaç saat sonrasindan baslamak istiyorsunuz? En az 2 saat sonrasını seçmelisiniz.', step=1, min_value=2, max_value=24)
+date = datetime.today()
+date = st.sidebar.date_input("Araç kiralayacağınız günü seçiniz?", date)
+hour = date.hour
+day = date.day
+#day = st.sidebar.number_input('Kaç gün sonrasından baslamak istiyorsunuz? Aynı gün için 0 yazmalısınız.', step=1, min_value=0, max_value=30)
 loc_name = st.sidebar.selectbox('Hangi lokasyon için veri görmek istersiniz?', list(loc_dict.keys()), placeholder="Default")
 filename = st.sidebar.text_input("Dosya Adı", value="yolcu360.xlsx")
 btn = st.sidebar.button('Ara')
