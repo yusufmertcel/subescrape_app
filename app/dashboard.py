@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Yolcu360 Dashboard", page_icon="🚗", layout="wide")
 
-
+df_one, df_seven, df_thirty = None, None, None
 columns = ["checkInDate", "checkInOffice",	"checkOutOffice",	"brand",	"brand_id",	"model",	"model_id",	"sippCode",	"vendor",	"vendor_id",	"period",	"price_currency",	"price_amount"]
 
 st.title(" :bar_chart: Yolcu360 Dashboard")
