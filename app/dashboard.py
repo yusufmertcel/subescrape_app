@@ -53,9 +53,9 @@ def click_button(lvhour, lvday, lvloc_name, lvfname):
     main_obj = Main("dashboard", lvhour, lvday)
 
     df_one, df_seven, df_thirty =  main_obj.main(lvloc_name, lvfname)
-    print(df_one.head())
-    print(df_seven.head())
-    print(df_thirty.head())
+    #print(df_one.head())
+    #print(df_seven.head())
+    #print(df_thirty.head())
 
     df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
     return df_one, df_seven, df_thirty, df
