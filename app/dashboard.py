@@ -21,6 +21,9 @@ with open("app/garenta_sube.json", "r") as f:
 if 'clicked' not in st.session_state:
     st.session_state.clicked = False
 
+if 'clicked_one' not in st.session_state:
+    st.session_state.clicked_one = False
+
 
 fl = st.file_uploader(":file_folder: Upload a file", type=["csv","xlsx", "xls"])
 if fl is not None:
