@@ -85,13 +85,15 @@ df_filtered = df[(df["price_amount"] >= price1) & (df["price_amount"] <= price2)
 
 
 #hour = st.sidebar.number_input('Kaç saat sonrasindan baslamak istiyorsunuz? En az 2 saat sonrasını seçmelisiniz.', step=1, min_value=2, max_value=24)
-date = datetime.now()
-date = st.sidebar.date_input("Araç kiralayacağınız günü seçiniz?", date)
-hour = date.hour()
-day = date.day
+now = datetime.now()
+date_str = st.sidebar.date_input("Araç kiralayacağınız günü seçiniz?", now, min_value=now)
+hour_str = st.sidebar.time_input("Araç kiralayacağınız saati seçiniz?", "now", step=900*4)
+fulldatestr = date_str + "T" + hour_str
 #day = st.sidebar.number_input('Kaç gün sonrasından baslamak istiyorsunuz? Aynı gün için 0 yazmalısınız.', step=1, min_value=0, max_value=30)
 loc_name = st.sidebar.selectbox('Hangi lokasyon için veri görmek istersiniz?', list(loc_dict.keys()), placeholder="Default")
 filename = st.sidebar.text_input("Dosya Adı", value="yolcu360.xlsx")
+date_object = datetime.strptime(fulldatestr, "%Y-%m-%dT%H:%M:00")
+hour, day = (date_object.hour - now.hour), (date_object.day - now.day)
 btn = st.sidebar.button('Ara')
 st.sidebar.write(btn)
 
