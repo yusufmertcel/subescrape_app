@@ -53,12 +53,13 @@ def click_button(lvhour, lvday, lvloc_name, lvfname):
     main_obj = Main("dashboard", lvhour, lvday)
     try:
         df_one, df_seven, df_thirty =  main_obj.main(lvloc_name, lvfname)
+        df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
     except ValueError:
         st.sidebar.write("Aradığınız tarih ve şubede kiralık araç bulunamamıştır.")
         #print(df_one.head())
         #print(df_seven.head())
         #print(df_thirty.head())
-        df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
+        df = pd.DataFrame([], columns=df_one.columns)
     return df_one, df_seven, df_thirty, df
 
 df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
