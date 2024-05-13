@@ -16,6 +16,10 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allo
 with open("app/garenta_sube.json", "r") as f:
     loc_dict = json.load(f)
 
+# Define session state variables
+if 'clicked' not in st.session_state:
+    st.session_state.clicked = False
+
 
 fl = st.file_uploader(":file_folder: Upload a file", type=["csv","xlsx", "xls"])
 if fl is not None:
@@ -50,7 +54,6 @@ else:
 
 #Sidebar
 def click_button(lvhour, lvday, lvloc_name, lvfname, cols):
-    st.session_state.clicked = True
     main_obj = Main("dashboard", lvhour, lvday)
     try:
         df_one, df_seven, df_thirty =  main_obj.main(lvloc_name, lvfname)
@@ -100,6 +103,7 @@ btn = st.sidebar.button('Ara')
 st.sidebar.write(btn)
 
 if btn:
+    st.session_state.clicked = True
     df_one, df_seven, df_thirty, df = click_button(hour, day, loc_name, filename, columns)
     df_filtered = df[(df["price_amount"] >= price1) & (df["price_amount"] <= price2)].copy()
 
