@@ -22,7 +22,7 @@ if 'clicked' not in st.session_state:
     st.session_state.clicked = False
 
 if 'clicked_one' not in st.session_state:
-    st.session_state.clicked_one = False
+    st.session_state.clicked_one = True
 
 
 fl = st.file_uploader(":file_folder: Upload a file", type=["csv","xlsx", "xls"])
@@ -43,18 +43,6 @@ if fl is not None:
         df_thirty = pd.read_excel(fl, sheet_name="30 Gunluk")
     else:
         df_thirty = pd.read_excel(fl, sheet_name=0)
-elif not st.session_state.clicked_one:
-    files = os.listdir("./app")
-    file = [idx for idx in files if idx.lower().endswith(".xlsx")][0]
-    print(file)
-    try:
-        df_one = pd.read_excel("app/"+file, sheet_name="1 Gunluk")
-        df_seven = pd.read_excel("app/"+file, sheet_name="7 Gunluk")
-        df_thirty = pd.read_excel("app/"+file, sheet_name="30 Gunluk")
-    except ValueError:
-        df_one = pd.read_excel("app/"+file, sheet_name=0)
-        df_seven = pd.read_excel("app/"+file, sheet_name=1)
-        df_thirty = pd.read_excel("app/"+file, sheet_name=2)
 
 #Sidebar
 def click_button(lvhour, lvday, lvloc_name, lvfname, cols):
@@ -107,8 +95,7 @@ btn = st.sidebar.button('Ara')
 st.sidebar.write(btn)
 
 if btn:
-    if 'clicked_one' not in st.session_state:
-        st.session_state.clicked_one = True
+    st.session_state.clicked_one = True
     st.session_state.clicked = True
     df_one, df_seven, df_thirty, df = click_button(hour, day, loc_name, filename, columns)
     df_filtered = df[(df["price_amount"] >= price1) & (df["price_amount"] <= price2)].copy()
