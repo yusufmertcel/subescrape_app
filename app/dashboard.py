@@ -10,6 +10,9 @@ warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Yolcu360 Dashboard", page_icon="🚗", layout="wide")
 
+
+columns = ["checkInDate", "checkInOffice",	"checkOutOffice",	"brand",	"brand_id",	"model",	"model_id",	"sippCode",	"vendor",	"vendor_id",	"period",	"price_currency",	"price_amount"]
+
 st.title(" :bar_chart: Yolcu360 Dashboard")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
@@ -57,9 +60,10 @@ def click_button(lvhour, lvday, lvloc_name, lvfname, cols):
         #print(df_thirty.head())
         df = pd.DataFrame([], columns=cols)
     return df_one, df_seven, df_thirty, df
-
-df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
-columns = df.columns
+if df_one is not None and df_seven is not None and df_thirty is not None:
+    df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
+else:
+    df = pd.DataFrame([], columns=columns) 
 # arayüzden saat, gün, lokasyon, seçimi yapılacak
 
 # Price Range
