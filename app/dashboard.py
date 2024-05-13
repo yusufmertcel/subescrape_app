@@ -5,7 +5,7 @@ import os
 import warnings
 import json
 from yolcu360_main import Main
-import datetime
+from datetime import datetime
 warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Yolcu360 Dashboard", page_icon="🚗", layout="wide")
