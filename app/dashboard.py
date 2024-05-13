@@ -48,7 +48,7 @@ else:
         df_thirty = pd.read_excel("app/"+file, sheet_name=2)
 
 #Sidebar
-def click_button(lvhour, lvday, lvloc_name, lvfname):
+def click_button(lvhour, lvday, lvloc_name, lvfname, cols):
     st.session_state.clicked = True
     main_obj = Main("dashboard", lvhour, lvday)
     try:
@@ -59,10 +59,11 @@ def click_button(lvhour, lvday, lvloc_name, lvfname):
         #print(df_one.head())
         #print(df_seven.head())
         #print(df_thirty.head())
-        df = pd.DataFrame([], columns=df_one.columns)
+        df = pd.DataFrame([], columns=cols)
     return df_one, df_seven, df_thirty, df
 
 df = pd.concat([df_one, df_seven, df_thirty], ignore_index=True)
+columns = df.columns
 # arayüzden saat, gün, lokasyon, seçimi yapılacak
 
 # Price Range
@@ -90,7 +91,7 @@ btn = st.sidebar.button('Ara')
 st.sidebar.write(btn)
 
 if btn:
-    df_one, df_seven, df_thirty, df = click_button(hour, day, loc_name, filename)
+    df_one, df_seven, df_thirty, df = click_button(hour, day, loc_name, filename, columns)
     df_filtered = df[(df["price_amount"] >= price1) & (df["price_amount"] <= price2)].copy()
 
 st.sidebar.header("Choose your filter: ")
